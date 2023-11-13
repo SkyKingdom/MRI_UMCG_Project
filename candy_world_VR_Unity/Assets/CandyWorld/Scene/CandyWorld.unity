@@ -881,7 +881,7 @@ PrefabInstance:
     - target: {fileID: 2796126345064368031, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 215.91176
+      value: 214.925
       objectReference: {fileID: 0}
     - target: {fileID: 2796126345064368031, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
@@ -891,7 +891,7 @@ PrefabInstance:
     - target: {fileID: 2796126345064368031, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 109.976
+      value: 111.147
       objectReference: {fileID: 0}
     - target: {fileID: 2796126345064368031, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
@@ -950,24 +950,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
+      propertyPath: CastSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+        type: 3}
       propertyPath: FishFloat
       value: 
       objectReference: {fileID: 1462174875}
     - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
+      propertyPath: castSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+        type: 3}
       propertyPath: pullSpeed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
       propertyPath: swingSpeed
-      value: 5
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+        type: 3}
+      propertyPath: RetractSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+        type: 3}
+      propertyPath: retractSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+        type: 3}
+      propertyPath: upWardsSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
       propertyPath: PlayerTransform
       value: 
       objectReference: {fileID: 1282925924}
+    - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+        type: 3}
+      propertyPath: fishFloatOffset.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895493311184966479, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1031,6 +1066,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3603434007103126831, guid: 63a802ae3ef075041b64bb5bae3c8a82,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8144503639981174209, guid: 63a802ae3ef075041b64bb5bae3c8a82,
         type: 3}
       propertyPath: moveSpeed
@@ -1368,6 +1408,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1075578435 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2917338527916696980, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 111427186}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1282925924 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5217314908100295463, guid: 63a802ae3ef075041b64bb5bae3c8a82,
@@ -1386,6 +1432,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Float
+      objectReference: {fileID: 0}
+    - target: {fileID: 3189194406962135756, guid: b15cb0d77ffb0d9459a7075c05237033,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072442173556761980, guid: b15cb0d77ffb0d9459a7075c05237033,
+        type: 3}
+      propertyPath: waterSurface
+      value: 6.7
       objectReference: {fileID: 0}
     - target: {fileID: 5373209515595091940, guid: b15cb0d77ffb0d9459a7075c05237033,
         type: 3}
@@ -1437,6 +1493,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9221142501099828817, guid: b15cb0d77ffb0d9459a7075c05237033,
+        type: 3}
+      propertyPath: startPoint
+      value: 
+      objectReference: {fileID: 1075578435}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1905,6 +1966,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.32704946
+      objectReference: {fileID: 0}
+    - target: {fileID: 5543150676366965575, guid: 0a040eb3750020b4d974df04fa56b541,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5553029274563970082, guid: 0a040eb3750020b4d974df04fa56b541,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

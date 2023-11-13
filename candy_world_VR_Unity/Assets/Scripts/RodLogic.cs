@@ -1,73 +1,93 @@
+using System.Collections;
 using UnityEngine;
 
 public class RodLogic : MonoBehaviour
 {
-    // Public references
     public GameObject FishFloat;
     public Transform PlayerTransform;
     public float swingSpeed;
     public float pullSpeed;
+    public float castSpeed;
+    public float retractSpeed;
+    public float upWardsSpeed;
 
-    // Internal variables
-    private Vector3 previousRodPosition;
-    private bool isFishFloatActive;
-
-    // Offset for FishFloat position (set in the inspector)
-    public Vector3 fishFloatOffset;
+    private bool isFishFloatActive = false;
+    private Vector3 previousPosition;
 
     void Start()
     {
-        // Initialize previousRodPosition with the initial position of the rod
-        previousRodPosition = transform.position;
-        // Ensure FishFloat is initially disabled
         FishFloat.SetActive(false);
+        previousPosition = transform.position;
     }
 
     void Update()
     {
-        // Calculate the speed of the rod
-        float rodSpeed = (transform.position - previousRodPosition).magnitude / Time.deltaTime;
-
-        // Check for forward motion and enable FishFloat
-        if (rodSpeed >= swingSpeed)
-        {
-            EnableFishFloat();
-        }
-        // Check for backward motion and move FishFloat to PlayerTransform
-        else if (isFishFloatActive && rodSpeed >= pullSpeed)
-        {
-            MoveFishFloatToPlayer();
-        }
-
-        // Update previousRodPosition
-        previousRodPosition = transform.position;
+        CheckSwing();
     }
 
-    void EnableFishFloat()
+    private void CheckSwing()
     {
-        // Enable FishFloat
-        FishFloat.SetActive(true);
+        Vector3 deltaPosition = transform.position - previousPosition;
+        float speed = Vector3.Dot(deltaPosition, transform.forward) / Time.deltaTime;
 
-        // Calculate the velocity
-        Vector3 forwardVelocity = transform.forward * swingSpeed;
-        Vector3 upwardVelocity = transform.up * swingSpeed * 0.5f; // 45-degree upwards velocity
+        if (speed > 0)
+        {
+            OnSwingForwards(speed);
+        }
+        else if (speed < 0)
+        {
+            OnSwingBackwards(speed);
+        }
 
-        // Set FishFloat position and velocity
-        FishFloat.transform.position = transform.position + fishFloatOffset;
-        FishFloat.GetComponent<Rigidbody>().velocity = forwardVelocity + upwardVelocity;
+        previousPosition = transform.position;
     }
 
-    void MoveFishFloatToPlayer()
+    private void OnSwingForwards(float speed)
     {
-        // Move FishFloat to PlayerTransform
-        FishFloat.transform.position = PlayerTransform.position;
-
-        // Check if FishFloat has reached the PlayerTransform
-        if (Vector3.Distance(FishFloat.transform.position, PlayerTransform.position) < 0.1f)
+        if (Mathf.Abs(speed) >= swingSpeed && !isFishFloatActive)
         {
-            // Disable FishFloat
+            Debug.Log("Rod is being swung forwards!");
+            FishFloat.SetActive(true);
+
+            // Move the FishFloat to this.position with an offset of <X> on the y axis
+            Vector3 fishFloatPosition = transform.position + new Vector3(0, 1f, 0);
+            FishFloat.transform.position = fishFloatPosition;
+
+            // Add a forward force to the FishFloat relative to the rod's forward direction at the speed of the float CastSpeed
+            Vector3 castForce = transform.forward * castSpeed;
+            FishFloat.GetComponent<Rigidbody>().AddForce(castForce, ForceMode.Impulse);
+
+            // Add an upwards force to FishFloat at a 45-degree angle
+            Vector3 upwardsForce = Quaternion.Euler(45, 0, 0) * transform.up * upWardsSpeed;
+            FishFloat.GetComponent<Rigidbody>().AddForce(upwardsForce);
+
+            // Set isFishFloat bool to true
+            isFishFloatActive = true;
+        }
+
+        // Limit the max velocity of the FishFloat to the castSpeed
+        Rigidbody fishFloatRigidbody = FishFloat.GetComponent<Rigidbody>();
+        fishFloatRigidbody.velocity = Vector3.ClampMagnitude(fishFloatRigidbody.velocity, castSpeed);
+    }
+
+
+    private void OnSwingBackwards(float speed)
+    {
+        if (Mathf.Abs(speed) >= pullSpeed)
+        {
+            Debug.Log("Rod is being swung backwards!");
+
             FishFloat.SetActive(false);
             isFishFloatActive = false;
         }
+    }
+
+    private void OnFloatReturn()
+    {
+        // Set FishFloat to inactive
+        FishFloat.SetActive(false);
+
+        // Set isFishFloat bool to false
+        isFishFloatActive = false;
     }
 }
