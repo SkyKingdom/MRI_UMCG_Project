@@ -1441,7 +1441,7 @@ PrefabInstance:
     - target: {fileID: 4072442173556761980, guid: b15cb0d77ffb0d9459a7075c05237033,
         type: 3}
       propertyPath: waterSurface
-      value: 6.7
+      value: 5.9
       objectReference: {fileID: 0}
     - target: {fileID: 5373209515595091940, guid: b15cb0d77ffb0d9459a7075c05237033,
         type: 3}
