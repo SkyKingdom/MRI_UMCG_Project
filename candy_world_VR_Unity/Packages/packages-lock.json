@@ -298,7 +298,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.picoxr": {
-      "version": "file:C:/Users/kates/Documents/CandyWorld/PICO/PICO_Unity_Integration_SDK_v212/PICO_Unity_Integration_SDK_v212",
+      "version": "file:D:/Internship 2023-2024/PICO_Unity_Integration_SDK_v212/PICO_Unity_Integration_SDK_v212",
       "depth": 0,
       "source": "local",
       "dependencies": {
