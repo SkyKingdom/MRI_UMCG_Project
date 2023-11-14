@@ -46,7 +46,6 @@ public class RodLogic : MonoBehaviour
     {
         if (Mathf.Abs(speed) >= swingSpeed && !isFishFloatActive)
         {
-            Debug.Log("Rod is being swung forwards!");
             FishFloat.SetActive(true);
 
             // Move the FishFloat to this.position with an offset of <X> on the y axis
@@ -57,8 +56,8 @@ public class RodLogic : MonoBehaviour
             Vector3 castForce = transform.forward * castSpeed;
             FishFloat.GetComponent<Rigidbody>().AddForce(castForce, ForceMode.Impulse);
 
-            // Add an upwards force to FishFloat at a 45-degree angle
-            Vector3 upwardsForce = Quaternion.Euler(45, 0, 0) * transform.up * upWardsSpeed;
+            // Add an upwards force to FishFloat
+            Vector3 upwardsForce = transform.up * upWardsSpeed; // Adjust the direction if needed
             FishFloat.GetComponent<Rigidbody>().AddForce(upwardsForce, ForceMode.Impulse);
 
             // Set isFishFloat bool to true
@@ -70,18 +69,37 @@ public class RodLogic : MonoBehaviour
         fishFloatRigidbody.velocity = Vector3.ClampMagnitude(fishFloatRigidbody.velocity, castSpeed);
     }
 
-
     private void OnSwingBackwards(float speed)
     {
         if (Mathf.Abs(speed) >= pullSpeed)
         {
-            Debug.Log("Rod is being swung backwards!");
-
-            FishFloat.SetActive(false);
-            isFishFloatActive = false;
+            StartCoroutine(FloatReturnCoroutine()); // Start the coroutine to move the FishFloat back
         }
     }
 
+    // Coroutine to gradually move the FishFloat back to the player transform
+    private IEnumerator FloatReturnCoroutine()
+    {
+        // Calculate the direction from FishFloat to the player
+        Vector3 returnDirection = (PlayerTransform.position - FishFloat.transform.position).normalized;
+
+        // Continue moving the FishFloat until it reaches the player
+        while (Vector3.Distance(FishFloat.transform.position, PlayerTransform.position) > 0.1f)
+        {
+            // Calculate the movement step
+            float step = retractSpeed * Time.deltaTime;
+
+            // Move the FishFloat towards the player
+            FishFloat.transform.position = Vector3.MoveTowards(FishFloat.transform.position, PlayerTransform.position, step);
+
+            yield return null; // Wait for the next frame
+        }
+
+        // After reaching the player, call the method to handle the FishFloat return
+        OnFloatReturn();
+    }
+
+    // Method to handle the FishFloat return
     private void OnFloatReturn()
     {
         // Set FishFloat to inactive
