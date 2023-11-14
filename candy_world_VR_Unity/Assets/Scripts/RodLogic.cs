@@ -59,7 +59,7 @@ public class RodLogic : MonoBehaviour
 
             // Add an upwards force to FishFloat at a 45-degree angle
             Vector3 upwardsForce = Quaternion.Euler(45, 0, 0) * transform.up * upWardsSpeed;
-            FishFloat.GetComponent<Rigidbody>().AddForce(upwardsForce);
+            FishFloat.GetComponent<Rigidbody>().AddForce(upwardsForce, ForceMode.Impulse);
 
             // Set isFishFloat bool to true
             isFishFloatActive = true;
