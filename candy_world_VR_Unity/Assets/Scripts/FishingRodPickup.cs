@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem.Android.LowLevel;
 
 public class FishingRodPickup : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class FishingRodPickup : MonoBehaviour
         {
             controllerTransform = other.transform;
             isPickedUp = true;
-            print("Is picking up");
         }
     }
 
@@ -26,8 +24,11 @@ public class FishingRodPickup : MonoBehaviour
             transform.position = controllerTransform.position;
             transform.rotation = controllerTransform.rotation;
 
-            // Add an additional 90 degrees of rotation to the X-axis
-            transform.Rotate(Vector3.right, 90f);
+            // Add an additional -90 degrees of rotation to the X-axis
+            transform.Rotate(Vector3.right, -90f);
+
+            // Add an additional 180 degrees of rotation to the Y-axis
+            transform.Rotate(Vector3.up, 180f);
         }
     }
 }
