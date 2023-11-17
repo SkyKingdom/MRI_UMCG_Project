@@ -958,6 +958,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 873648271452697767, guid: 63a802ae3ef075041b64bb5bae3c8a82,
+        type: 3}
+      propertyPath: m_UIScrollAction.m_Action.m_Id
+      value: ba867ec4-60b3-457c-b8b1-7aa2e3eeabe9
+      objectReference: {fileID: 0}
+    - target: {fileID: 873648271452697767, guid: 63a802ae3ef075041b64bb5bae3c8a82,
+        type: 3}
+      propertyPath: m_IsTrackedAction.m_Action.m_Id
+      value: f99abadc-1710-4624-aced-bab7885e3c0f
+      objectReference: {fileID: 0}
     - target: {fileID: 6512480500022267840, guid: 63a802ae3ef075041b64bb5bae3c8a82,
         type: 3}
       propertyPath: m_TrackingStateInput.m_Action.m_Id
@@ -1145,6 +1155,14 @@ PrefabInstance:
         type: 3}
       insertIndex: 2
       addedObject: {fileID: 1461199778}
+    - targetCorrespondingSourceObject: {fileID: 3189194406962135756, guid: b15cb0d77ffb0d9459a7075c05237033,
+        type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1461199786}
+    - targetCorrespondingSourceObject: {fileID: 3189194406962135756, guid: b15cb0d77ffb0d9459a7075c05237033,
+        type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 1461199785}
   m_SourcePrefab: {fileID: 100100000, guid: b15cb0d77ffb0d9459a7075c05237033, type: 3}
 --- !u!4 &404244254 stripped
 Transform:
@@ -1155,6 +1173,12 @@ Transform:
 --- !u!1 &408257230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2850234560652829029, guid: fb0657a2c0ed14d258e62aa8888abac8,
+    type: 3}
+  m_PrefabInstance: {fileID: 776698076}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &408257232 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1746065163851423805, guid: fb0657a2c0ed14d258e62aa8888abac8,
     type: 3}
   m_PrefabInstance: {fileID: 776698076}
   m_PrefabAsset: {fileID: 0}
@@ -1537,6 +1561,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d799b9dd29e64114fb23f8e5251ecb41,
     type: 3}
   m_PrefabInstance: {fileID: 662947760}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &687917272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 873648270689416259, guid: 63a802ae3ef075041b64bb5bae3c8a82,
+    type: 3}
+  m_PrefabInstance: {fileID: 236762693}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &752011273
 GameObject:
@@ -2299,6 +2329,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d799b9dd29e64114fb23f8e5251ecb41, type: 3}
+--- !u!4 &1388492888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 873648271452697762, guid: 63a802ae3ef075041b64bb5bae3c8a82,
+    type: 3}
+  m_PrefabInstance: {fileID: 236762693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1389067387 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5217314908100295463, guid: 63a802ae3ef075041b64bb5bae3c8a82,
@@ -2529,10 +2565,127 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fish: {fileID: 408257230}
   Player: {fileID: 1389067387}
-  fishSpawnDistance: 5
-  FishSpeed: 1
-  biteDistance: 0.2
+  HMD: {fileID: 1472562291}
+  Controller_r: {fileID: 1388492888}
+  Controller_l: {fileID: 687917272}
+  fishSpawnDistance: 15
+  FishSpeed: 1.5
+  biteDistance: 0.5
   catchDistance: 5
+  warningSpeed: 0.05
+  illigalSpeed: 1
+--- !u!82 &1461199785
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461199771}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 95dc4135578ba464da82ff44469ebeed, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1461199786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461199771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30a2bf215985c3848b683191914e272a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FishTransform: {fileID: 408257232}
+  detectionRange: 15
+  farVolume: 0
+  nearVolume: 1
 --- !u!1 &1472562287 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 873648271280133154, guid: 63a802ae3ef075041b64bb5bae3c8a82,

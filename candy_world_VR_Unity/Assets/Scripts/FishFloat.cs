@@ -7,13 +7,29 @@ public class FishFloat : MonoBehaviour
     [SerializeField] private GameObject Fish;
     [SerializeField] private Transform Player;
 
+    [SerializeField] private Transform HMD;
+    [SerializeField] private Transform Controller_r;
+    [SerializeField] private Transform Controller_l;
+
+    private float HMD_Speed;
+    private float controller_r_Speed;
+    private float controller_l_Speed;
+    private float playerSpeed;
+
+    private Vector3 hmdPreviousPosition;
+    private Vector3 controllerRPreviousPosition;
+    private Vector3 controllerLPreviousPosition;
+
     [SerializeField] private float fishSpawnDistance;
     [SerializeField] private float FishSpeed;
     [SerializeField] private float biteDistance;
     [SerializeField] private float catchDistance;
-    [SerializeField] private float rotationDuration = 3f;
+
+    [SerializeField] private float warningSpeed;
+    [SerializeField] private float illigalSpeed;
 
     private bool isFishActive;
+    private bool isFishScared;
     private bool hasFishBit;
 
     private Vector3 previousPosition;
@@ -25,6 +41,7 @@ public class FishFloat : MonoBehaviour
         Fish.gameObject.SetActive(false);
         isFishActive = false;
         hasFishBit = false;
+        isFishScared = false;
 
         // Initialize the previous position
         previousPosition = transform.position;
@@ -34,13 +51,45 @@ public class FishFloat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Track speeds of devices
+        HMD_Speed = CalculateSpeed(HMD, ref hmdPreviousPosition);
+        controller_r_Speed = CalculateSpeed(Controller_r, ref controllerRPreviousPosition);
+        controller_l_Speed = CalculateSpeed(Controller_l, ref controllerLPreviousPosition);
+
+        // Calculate the maximum speed among the three devices
+        playerSpeed = CalculateMaxSpeed();
+
         OnStopDrifting();
         MoveFishToFloat();
+
         if (Vector3.Distance(Fish.transform.position, Player.transform.position) < catchDistance)
         {
-            onFishCatch();
+            OnFishCatch();
         }
 
+        if (Vector3.Distance(transform.position, Player.transform.position) < catchDistance)
+        {
+            FishReset();
+        }
+    }
+
+    private float CalculateSpeed(Transform targetTransform, ref Vector3 previousPosition)
+    {
+        // Calculate speed based on the change in position over time
+        float speed = Vector3.Distance(targetTransform.position, previousPosition) / Time.deltaTime;
+
+        // Update the previous position
+        previousPosition = targetTransform.position;
+
+        return speed;
+    }
+
+    private float CalculateMaxSpeed()
+    {
+        // Calculate the maximum speed among the three devices
+        float maxSpeed = Mathf.Max(HMD_Speed, controller_r_Speed, controller_l_Speed);
+
+        return maxSpeed;
     }
 
     private void OnStopDrifting()
@@ -81,57 +130,94 @@ public class FishFloat : MonoBehaviour
 
     void MoveFishToFloat()
     {
-        if (isFishActive == true)
+        if (playerSpeed < warningSpeed)
         {
-            if (!hasFishBit)
+            if (isFishActive)
             {
-                // Move the Fish towards this object at a set speed (FishSpeed)
-                Fish.transform.position = Vector3.MoveTowards(Fish.transform.position, transform.position, FishSpeed * Time.deltaTime);
-
-                // The fish should always face the direction in which it is moving
-                Fish.transform.LookAt(transform.position);
-
-                // If the fish is within a specified distance (biteDistance) from this object, set hasFishBit to true
-                if (Vector3.Distance(Fish.transform.position, transform.position) < biteDistance)
+                if (!hasFishBit)
                 {
-                    hasFishBit = true;
+                    if (!isFishScared)
+                    {
+                        // Move the Fish towards this object at a set speed (FishSpeed)
+                        Fish.transform.position = Vector3.MoveTowards(Fish.transform.position, transform.position, FishSpeed * Time.deltaTime);
+
+                        // The fish should always face the direction in which it is moving
+                        Fish.transform.LookAt(transform.position);
+
+                        // If the fish is within a specified distance (biteDistance) from this object, set hasFishBit to true
+                        if (Vector3.Distance(Fish.transform.position, transform.position) < biteDistance)
+                        {
+                            hasFishBit = true;
+                        }
+                    }
+                }
+                else
+                {
+                    OnFishBite();
                 }
             }
-            else
+        }
+        else if (playerSpeed >= warningSpeed && playerSpeed < illigalSpeed)
+        {
+            StartCoroutine(WaitAndReturn());
+        }
+        else if (playerSpeed >= illigalSpeed)
+        {
+            if(isFishScared == false)
             {
-                OnFishBite();
+                StartCoroutine(ScareFish());
             }
+            isFishScared = true;
         }
     }
 
-    void OnFishBite()
+    IEnumerator ScareFish()
     {
-        // Make the Fish a child of this object
-        Fish.transform.parent = transform;
-    }
+        Vector3 originalPosition = Fish.transform.position;
+        Vector3 oppositeDirection = originalPosition - transform.position;
+        oppositeDirection.Normalize();
 
-    void onFishCatch()
-    {
-        // Remove the fish as a child of this object
-        Fish.transform.parent = null;
-
-        // Rotate the fish for rotationDuration seconds on the y-axis
-        StartCoroutine(RotateFish());
-    }
-
-    IEnumerator RotateFish()
-    {
         float elapsedTime = 0f;
+        float duration = 3f;
 
-        while (elapsedTime < rotationDuration)
+        while (elapsedTime < duration)
         {
-            Fish.transform.Rotate(Vector3.up, Time.deltaTime * 360f / rotationDuration);
+            Fish.transform.position = Vector3.MoveTowards(Fish.transform.position, oppositeDirection * fishSpawnDistance, FishSpeed * Time.deltaTime);
+            Fish.transform.LookAt(Fish.transform.position + oppositeDirection);
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        // Stop rotating and set the fish to inactive
+        isFishScared = false;
+        FishReset();
+    }
+
+
+    IEnumerator WaitAndReturn()
+    {
+        yield return new WaitForSeconds(3f);
+    }
+    void OnFishBite()
+    {
+        // Make the Fish a child of this object
+        Fish.transform.parent = transform;
+
+        print("Fish has bitten for whatever reason");
+    }
+
+    void OnFishCatch()
+    {
+        FishReset();
+    }
+
+    void FishReset()
+    {
+        Fish.transform.parent = null;
+        Fish.transform.position = new Vector3(0, 0, 0);
         Fish.SetActive(false);
-        print("Fish set to inactive");
+        isFishActive = false;
+        hasFishBit = false;
+        isFishScared = false;
     }
 }

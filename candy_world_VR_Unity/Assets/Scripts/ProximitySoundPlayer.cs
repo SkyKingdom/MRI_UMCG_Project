@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ProximitySoundPlayer : MonoBehaviour
 {
-    public string targetTag = "Fish";
+    public Transform FishTransform; // Reference to the fish's transform, assign in the Inspector.
     public float detectionRange = 10.0f; // Set this in the Inspector.
     public float farVolume = 0.2f; // Set this in the Inspector as a percentage.
     public float nearVolume = 1.0f; // Set this in the Inspector as a percentage.
@@ -19,23 +19,16 @@ public class ProximitySoundPlayer : MonoBehaviour
 
     private void Update()
     {
-        // Find all objects with the specified tag.
-        GameObject[] fishObjects = GameObject.FindGameObjectsWithTag(targetTag);
-
-        float closestDistance = detectionRange;
-
-        foreach (GameObject fishObject in fishObjects)
+        if (FishTransform == null)
         {
-            float distance = Vector3.Distance(fishObject.transform.position, hookTransform.position);
-
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-            }
+            Debug.LogError("Target Transform not assigned in the Inspector!");
+            return;
         }
 
-        // Calculate the volume based on the closest fish's proximity.
-        float volume = Mathf.Lerp(farVolume, nearVolume, 1.0f - (closestDistance / detectionRange));
+        float distance = Vector3.Distance(FishTransform.position, hookTransform.position);
+
+        // Calculate the volume based on the fish's proximity.
+        float volume = Mathf.Lerp(farVolume, nearVolume, 1.0f - (distance / detectionRange));
         audioSource.volume = volume;
     }
 }
