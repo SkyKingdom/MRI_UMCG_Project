@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5373209515595091940}
   - component: {fileID: 4072442173556761980}
+  - component: {fileID: 9221142501099828817}
   - component: {fileID: 6440222889913467759}
   - component: {fileID: 1465269812410097951}
-  - component: {fileID: 9221142501099828817}
   - component: {fileID: 3370191616876026617}
   m_Layer: 0
   m_Name: Float
@@ -50,9 +50,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9521fb8ad2a2614469f3d7a116977886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterSurface: 5.9
+  waterSurface: 6
   floatStrength: 10
   damping: 0.5
+--- !u!114 &9221142501099828817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3189194406962135756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d2a94581ae5cc64eaa09a5f4da61f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPoint: {fileID: 0}
+  endPoint: {fileID: 3435937621825920008}
+  curveHeight: -0.2
 --- !u!54 &6440222889913467759
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,21 +199,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &9221142501099828817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3189194406962135756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d2a94581ae5cc64eaa09a5f4da61f66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPoint: {fileID: 0}
-  endPoint: {fileID: 3435937621825920008}
-  curveHeight: -0.2
 --- !u!65 &3370191616876026617
 BoxCollider:
   m_ObjectHideFlags: 0
