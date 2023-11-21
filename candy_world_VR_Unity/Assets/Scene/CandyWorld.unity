@@ -2636,6 +2636,11 @@ MonoBehaviour:
   HMD: {fileID: 1472562291}
   Controller_r: {fileID: 1388492888}
   Controller_l: {fileID: 687917272}
+  MovementScaleFrame: {fileID: 0}
+  MovementScale: {fileID: 0}
+  MovementScaleSmoothing: 0
+  minMovementScale: 0
+  maxMovementScale: 0
   fishSpawnDistance: 15
   FishSpeed: 1.5
   biteDistance: 0.5
@@ -3507,7 +3512,7 @@ PrefabInstance:
     - target: {fileID: 2796126345064368031, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.919
+      value: 6.404
       objectReference: {fileID: 0}
     - target: {fileID: 2796126345064368031, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
