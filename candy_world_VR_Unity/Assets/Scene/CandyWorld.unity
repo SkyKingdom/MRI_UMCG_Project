@@ -2636,7 +2636,7 @@ MonoBehaviour:
   HMD: {fileID: 1472562291}
   Controller_r: {fileID: 1388492888}
   Controller_l: {fileID: 687917272}
-  MovementScaleFrame: {fileID: 0}
+  MovementScaleFrame: {fileID: 1614572273}
   MovementScale: {fileID: 0}
   MovementScaleSmoothing: 0
   minMovementScale: 0
@@ -2949,6 +2949,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3507537714017361148, guid: 0a040eb3750020b4d974df04fa56b541,
     type: 3}
   m_PrefabInstance: {fileID: 8124018579011617217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1614572273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3603434007103126831, guid: 63a802ae3ef075041b64bb5bae3c8a82,
+    type: 3}
+  m_PrefabInstance: {fileID: 236762693}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1749922069
 GameObject:
