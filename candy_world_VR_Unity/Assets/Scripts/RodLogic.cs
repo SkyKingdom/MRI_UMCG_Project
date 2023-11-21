@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class RodLogic : MonoBehaviour
 {
-    public GameObject fishFloat;
-    public Transform playerTransform;
-    public float swingSpeed;
-    public float pullSpeed;
-    public float castSpeed;
-    public float retractSpeed;
-    public float upwardsSpeed;
+    [SerializeField] private GameObject fishFloat;
+    [SerializeField] private Transform playerTransform;
+
+    [SerializeField] private float swingSpeed;
+    [SerializeField] private float pullSpeed;
+    [SerializeField] private float castSpeed;
+    [SerializeField] private float retractSpeed;
+    [SerializeField] private float upwardsSpeed;
 
     private bool isFishFloatActive;
     private bool isSwingingBackwards;

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FishFloat : MonoBehaviour
@@ -10,6 +9,14 @@ public class FishFloat : MonoBehaviour
     [SerializeField] private Transform HMD;
     [SerializeField] private Transform Controller_r;
     [SerializeField] private Transform Controller_l;
+
+    [SerializeField] private GameObject MovementScaleFrame;
+
+    [SerializeField] private Transform MovementScale;
+
+    [SerializeField] private float MovementScaleSmoothing;
+    [SerializeField] private float minMovementScale;
+    [SerializeField] private float maxMovementScale;
 
     private float HMD_Speed;
     private float controller_r_Speed;
@@ -43,6 +50,7 @@ public class FishFloat : MonoBehaviour
         hasFishBit = false;
         isFishScared = false;
 
+
         // Initialize the previous position
         previousPosition = transform.position;
         timeSinceLastMove = 0f;
@@ -59,6 +67,13 @@ public class FishFloat : MonoBehaviour
         // Calculate the maximum speed among the three devices
         playerSpeed = CalculateMaxSpeed();
 
+        // Calculate the percentage based on maxSpeed
+        float speedPercentage = Mathf.InverseLerp(minMovementScale, maxMovementScale, playerSpeed);
+
+        // Rotate the MovementScale based on the percentage with smoothing
+        Quaternion targetRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(0f, -180f, speedPercentage));
+        MovementScale.rotation = Quaternion.Slerp(MovementScale.rotation, targetRotation, Time.deltaTime * MovementScaleSmoothing);
+
         OnStopDrifting();
         MoveFishToFloat();
 
@@ -70,6 +85,9 @@ public class FishFloat : MonoBehaviour
         if (Vector3.Distance(transform.position, Player.transform.position) < catchDistance)
         {
             FishReset();
+
+            // Disable Movment scale objects
+            MovementScaleFrame.SetActive(false);
         }
     }
 
@@ -119,11 +137,15 @@ public class FishFloat : MonoBehaviour
         if (isFishActive == false)
         {
             Fish.gameObject.SetActive(true);
+
             // Move the Fish to a random spot around this object on the horizontal axis at a specified distance
             float randomAngle = Random.Range(0f, 360f);
             Vector3 randomDirection = Quaternion.Euler(0, randomAngle, 0) * Vector3.forward;
             Vector3 spawnPosition = transform.position + randomDirection * fishSpawnDistance;
             Fish.transform.position = new Vector3(spawnPosition.x, transform.position.y, spawnPosition.z);
+
+            // Enable the movement scale objects
+            MovementScaleFrame.SetActive(true);
         }
         isFishActive = true;
     }
@@ -161,14 +183,38 @@ public class FishFloat : MonoBehaviour
         {
             StartCoroutine(WaitAndReturn());
         }
-        else if (playerSpeed >= illigalSpeed)
+        else if (playerSpeed >= illigalSpeed && !hasFishBit)
         {
-            if(isFishScared == false)
+            if (!isFishScared)
             {
                 StartCoroutine(ScareFish());
             }
             isFishScared = true;
         }
+    }
+
+    void OnFishBite()
+    {
+        // Make the Fish a child of this object
+        Fish.transform.parent = transform;
+
+        // Disable Movment scale objects
+        MovementScaleFrame.SetActive(false);
+    }
+
+    void OnFishCatch()
+    {
+        FishReset();
+    }
+
+    void FishReset()
+    {
+        Fish.transform.parent = null;
+        Fish.transform.position = new Vector3(0, 0, 0);
+        Fish.SetActive(false);
+        isFishActive = false;
+        hasFishBit = false;
+        isFishScared = false;
     }
 
     IEnumerator ScareFish()
@@ -193,31 +239,8 @@ public class FishFloat : MonoBehaviour
         FishReset();
     }
 
-
     IEnumerator WaitAndReturn()
     {
         yield return new WaitForSeconds(3f);
-    }
-    void OnFishBite()
-    {
-        // Make the Fish a child of this object
-        Fish.transform.parent = transform;
-
-        print("Fish has bitten for whatever reason");
-    }
-
-    void OnFishCatch()
-    {
-        FishReset();
-    }
-
-    void FishReset()
-    {
-        Fish.transform.parent = null;
-        Fish.transform.position = new Vector3(0, 0, 0);
-        Fish.SetActive(false);
-        isFishActive = false;
-        hasFishBit = false;
-        isFishScared = false;
     }
 }
