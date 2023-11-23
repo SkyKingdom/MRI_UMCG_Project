@@ -8,15 +8,12 @@ public class BoatController : MonoBehaviour
     public float moveSpeed = 5.0f; // Speed at which the boat moves
     private int currentKeyframeIndex = 0; // Index of the current keyframe
 
-    private void Update()
+    public void MoveBoat()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Check if there are keyframes in the list
+        if (keyframes.Count > 0)
         {
-            // Check if there are keyframes in the list
-            if (keyframes.Count > 0)
-            {
-                StartCoroutine(MoveToNextKeyframe());
-            }
+            StartCoroutine(MoveToNextKeyframe());
         }
     }
 

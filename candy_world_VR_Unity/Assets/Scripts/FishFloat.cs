@@ -6,17 +6,27 @@ public class FishFloat : MonoBehaviour
     [SerializeField] private GameObject Fish;
     [SerializeField] private Transform Player;
 
+    // Reference to BoatController script
+    [SerializeField] private BoatController boatController;
+
     [SerializeField] private Transform HMD;
     [SerializeField] private Transform Controller_r;
     [SerializeField] private Transform Controller_l;
 
     [SerializeField] private GameObject MovementScaleFrame;
-
     [SerializeField] private Transform MovementScale;
+
+    [SerializeField] private GameObject FishingScaleFrame;
+    [SerializeField] private Transform FishingScale;
 
     [SerializeField] private float MovementScaleSmoothing;
     [SerializeField] private float minMovementScale;
     [SerializeField] private float maxMovementScale;
+
+    [SerializeField] private float warningSpeed;
+    [SerializeField] private float illigalSpeed;
+
+    [SerializeField] private float fishingScaleSpeed;
 
     private float HMD_Speed;
     private float controller_r_Speed;
@@ -28,21 +38,22 @@ public class FishFloat : MonoBehaviour
     private Vector3 controllerLPreviousPosition;
 
     [SerializeField] private float fishSpawnDistance;
-    [SerializeField] private float FishSpeed;
+    [SerializeField] private float fishSpeed;
     [SerializeField] private float biteDistance;
     [SerializeField] private float catchDistance;
-
-    [SerializeField] private float warningSpeed;
-    [SerializeField] private float illigalSpeed;
 
     private bool isFishActive;
     private bool isFishScared;
     private bool hasFishBit;
+    private bool isFishCarryingPicture;
+
+    // Yet to be used
+    private bool isMovementScaleActive;
+    private bool isFishingScaleActive;
 
     private Vector3 previousPosition;
     private float timeSinceLastMove;
 
-    // Start is called before the first frame update
     void Start()
     {
         Fish.gameObject.SetActive(false);
@@ -50,6 +61,8 @@ public class FishFloat : MonoBehaviour
         hasFishBit = false;
         isFishScared = false;
 
+        // Find the boat controller script so we can access it within this script
+        BoatController boatController = GetComponent<BoatController>();
 
         // Initialize the previous position
         previousPosition = transform.position;
@@ -152,6 +165,15 @@ public class FishFloat : MonoBehaviour
 
     void MoveFishToFloat()
     {
+        // If the fish is within a specified distance (biteDistance) from this object, set hasFishBit to true
+        if (Vector3.Distance(Fish.transform.position, transform.position) < biteDistance)
+        {
+            hasFishBit = true;
+        }
+        if (hasFishBit && isFishActive)
+        {
+            OnFishBite();
+        }
         if (playerSpeed < warningSpeed)
         {
             if (isFishActive)
@@ -160,22 +182,12 @@ public class FishFloat : MonoBehaviour
                 {
                     if (!isFishScared)
                     {
-                        // Move the Fish towards this object at a set speed (FishSpeed)
-                        Fish.transform.position = Vector3.MoveTowards(Fish.transform.position, transform.position, FishSpeed * Time.deltaTime);
+                        // Move the Fish towards this object at a set speed (fishSpeed)
+                        Fish.transform.position = Vector3.MoveTowards(Fish.transform.position, transform.position, fishSpeed * Time.deltaTime);
 
                         // The fish should always face the direction in which it is moving
                         Fish.transform.LookAt(transform.position);
-
-                        // If the fish is within a specified distance (biteDistance) from this object, set hasFishBit to true
-                        if (Vector3.Distance(Fish.transform.position, transform.position) < biteDistance)
-                        {
-                            hasFishBit = true;
-                        }
                     }
-                }
-                else
-                {
-                    OnFishBite();
                 }
             }
         }
@@ -201,13 +213,40 @@ public class FishFloat : MonoBehaviour
         // Make the Fish a child of this object
         Fish.transform.parent = transform;
 
-        // Disable Movment scale objects
+        // Disable Movement scale objects
         MovementScaleFrame.SetActive(false);
+
+        // Enable the FishingScale object
+        FishingScaleFrame.SetActive(true);
+
+        // Calculate the new x position based on the sine of Time.time multiplied by fishingScaleSpeed
+        float newX = Mathf.Sin(Time.time * fishingScaleSpeed);
+
+        // Map the sine value from [-1, 1] to your desired range [-1, 1]
+        newX = Mathf.Lerp(-1f, 1f, (newX + 1f) / 2f);
+
+        // Set the new local position of the FishingScale relative to its parent
+        FishingScale.localPosition = new Vector3(newX, FishingScale.localPosition.y, FishingScale.localPosition.z);
+    }
+
+    public void OnSwingBackwards()
+    {
+
     }
 
     void OnFishCatch()
     {
         FishReset();
+
+        if (isFishCarryingPicture)
+        {
+            // Move the boat to the next check point when the fish has a picture
+            boatController.MoveBoat();
+        }
+        else
+        {
+
+        }
     }
 
     void FishReset()
@@ -215,6 +254,7 @@ public class FishFloat : MonoBehaviour
         Fish.transform.parent = null;
         Fish.transform.position = new Vector3(0, 0, 0);
         Fish.SetActive(false);
+        FishingScaleFrame.SetActive(false);
         isFishActive = false;
         hasFishBit = false;
         isFishScared = false;
@@ -231,7 +271,7 @@ public class FishFloat : MonoBehaviour
 
         while (elapsedTime < duration)
         {
-            Fish.transform.position = Vector3.MoveTowards(Fish.transform.position, oppositeDirection * fishSpawnDistance, FishSpeed * Time.deltaTime);
+            Fish.transform.position = Vector3.MoveTowards(Fish.transform.position, oppositeDirection * fishSpawnDistance, fishSpeed * Time.deltaTime);
             Fish.transform.LookAt(Fish.transform.position + oppositeDirection);
 
             elapsedTime += Time.deltaTime;
