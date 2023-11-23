@@ -1681,9 +1681,9 @@ MonoBehaviour:
   Controller_l: {fileID: 687917272}
   MovementScaleFrame: {fileID: 236762695}
   MovementScale: {fileID: 236762694}
-  MovementScaleSmoothing: 0
+  MovementScaleSmoothing: 5
   minMovementScale: 0
-  maxMovementScale: 0
+  maxMovementScale: 0.2
   fishSpawnDistance: 15
   FishSpeed: 1.5
   biteDistance: 0.5
