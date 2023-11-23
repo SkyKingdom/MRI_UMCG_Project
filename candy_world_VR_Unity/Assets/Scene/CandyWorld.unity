@@ -1682,8 +1682,8 @@ MonoBehaviour:
   MovementScaleFrame: {fileID: 236762695}
   MovementScale: {fileID: 236762694}
   MovementScaleSmoothing: 5
-  minMovementScale: 0
-  maxMovementScale: 0.2
+  minMovementScale: 0.05
+  maxMovementScale: 0.3
   fishSpawnDistance: 15
   FishSpeed: 1.5
   biteDistance: 0.5

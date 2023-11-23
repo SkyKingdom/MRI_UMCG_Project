@@ -181,12 +181,15 @@ public class FishFloat : MonoBehaviour
         }
         else if (playerSpeed >= warningSpeed && playerSpeed < illigalSpeed)
         {
-            StartCoroutine(WaitAndReturn());
+            return;
         }
         else if (playerSpeed >= illigalSpeed && !hasFishBit)
         {
             if (!isFishScared)
             {
+                // Disable Movment scale objects
+                MovementScaleFrame.SetActive(false);
+
                 StartCoroutine(ScareFish());
             }
             isFishScared = true;
@@ -237,10 +240,5 @@ public class FishFloat : MonoBehaviour
 
         isFishScared = false;
         FishReset();
-    }
-
-    IEnumerator WaitAndReturn()
-    {
-        yield return new WaitForSeconds(3f);
     }
 }
