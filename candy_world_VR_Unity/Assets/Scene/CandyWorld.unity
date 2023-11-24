@@ -138,6 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8298d0504d0758d429edf7948fb25043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &61079282 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8809970369906814980, guid: b15cb0d77ffb0d9459a7075c05237033,
+    type: 3}
+  m_PrefabInstance: {fileID: 391809285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &70106235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -407,18 +413,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1472562292}
   m_SourcePrefab: {fileID: 100100000, guid: 63a802ae3ef075041b64bb5bae3c8a82, type: 3}
---- !u!4 &236762694 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6715066084250929263, guid: 63a802ae3ef075041b64bb5bae3c8a82,
-    type: 3}
-  m_PrefabInstance: {fileID: 236762693}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &236762695 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3603434007103126831, guid: 63a802ae3ef075041b64bb5bae3c8a82,
-    type: 3}
-  m_PrefabInstance: {fileID: 236762693}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &254994091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -576,6 +570,11 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8193494224408191679, guid: b15cb0d77ffb0d9459a7075c05237033,
+        type: 3}
+      propertyPath: Target
+      value: 
+      objectReference: {fileID: 1472562291}
     - target: {fileID: 9221142501099828817, guid: b15cb0d77ffb0d9459a7075c05237033,
         type: 3}
       propertyPath: startPoint
@@ -1244,6 +1243,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa626a4bbb2890f40a3f4d1993b14f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1132683246 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1545298147805119812, guid: b15cb0d77ffb0d9459a7075c05237033,
+    type: 3}
+  m_PrefabInstance: {fileID: 391809285}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1180888765
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,15 +1939,15 @@ MonoBehaviour:
   HMD: {fileID: 1472562291}
   Controller_r: {fileID: 1388492888}
   Controller_l: {fileID: 687917272}
-  MovementScaleFrame: {fileID: 236762695}
-  MovementScale: {fileID: 236762694}
+  MovementScaleFrame: {fileID: 61079282}
+  MovementScale: {fileID: 1132683246}
   FishingScaleFrame: {fileID: 1575873905}
   FishingScale: {fileID: 740275135}
   MovementScaleSmoothing: 5
   minMovementScale: 0.05
   maxMovementScale: 0.3
   warningSpeed: 0.05
-  illigalSpeed: 1
+  illigalSpeed: 0.5
   fishingScaleSpeed: 3
   fishSpawnDistance: 15
   fishSpeed: 1

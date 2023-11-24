@@ -32,7 +32,6 @@ public class BoatController : MonoBehaviour
             while (Vector3.Distance(transform.position, targetKeyframe.position) > 0.1f)
             {
 
-                print("This debug line makes the code work for some reason, I love programming");
 
                 // Smoothly move the boat to the target keyframe position and rotation
                 transform.position = Vector3.MoveTowards(transform.position, targetKeyframe.position, moveSpeed * Time.deltaTime);
@@ -42,6 +41,8 @@ public class BoatController : MonoBehaviour
 
                 yield return null;
             }
+
+            print("This debug line makes the code work for some reason, I love programming");
 
             rodLogic.enabled = true;
 
