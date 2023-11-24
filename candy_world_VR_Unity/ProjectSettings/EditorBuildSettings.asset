@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/CandyWorld/Scene/CandyWorld.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scene/CandyWorld.unity
+    guid: 707acc8dffb72b144bb1ffbe1c965f3d
   m_configObjects:
     Unity.XR.PXR.Settings: {fileID: 11400000, guid: 1a38a7596b1aaec43b2a233c23ce2c39,
       type: 2}

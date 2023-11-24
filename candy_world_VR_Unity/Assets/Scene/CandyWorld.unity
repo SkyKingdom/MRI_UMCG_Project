@@ -421,6 +421,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Meter
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e59cbdac18e3b994295bf1df8554557b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2758,6 +2763,11 @@ PrefabInstance:
       propertyPath: PlayerTransform
       value: 
       objectReference: {fileID: 1389067387}
+    - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
+        type: 3}
+      propertyPath: fishFloatScript
+      value: 
+      objectReference: {fileID: 1461199778}
     - target: {fileID: 8509773721778201427, guid: 1bf4c09fd72cdb94d9e0902ec42e25fd,
         type: 3}
       propertyPath: playerTransform
