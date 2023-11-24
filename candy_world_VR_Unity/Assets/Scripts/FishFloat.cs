@@ -72,6 +72,13 @@ public class FishFloat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //debug
+        if (Input.GetKey(KeyCode.Space))
+        {
+            print("pressing space");
+            boatController.MoveBoat();
+        }
+
         // Track speeds of devices
         HMD_Speed = CalculateSpeed(HMD, ref hmdPreviousPosition);
         controller_r_Speed = CalculateSpeed(Controller_r, ref controllerRPreviousPosition);
@@ -84,8 +91,10 @@ public class FishFloat : MonoBehaviour
         float speedPercentage = Mathf.InverseLerp(minMovementScale, maxMovementScale, playerSpeed);
 
         // Rotate the MovementScale based on the percentage with smoothing
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(0f, -180f, speedPercentage));
-        MovementScale.rotation = Quaternion.Slerp(MovementScale.rotation, targetRotation, Time.deltaTime * MovementScaleSmoothing);
+        Quaternion localTargetRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(0f, -180f, speedPercentage));
+        Quaternion worldTargetRotation = MovementScale.parent.rotation * localTargetRotation;
+        MovementScale.rotation = Quaternion.Slerp(MovementScale.rotation, worldTargetRotation, Time.deltaTime * MovementScaleSmoothing);
+
 
         OnStopDrifting();
         MoveFishToFloat();
@@ -238,15 +247,7 @@ public class FishFloat : MonoBehaviour
     {
         FishReset();
 
-        if (isFishCarryingPicture)
-        {
-            // Move the boat to the next check point when the fish has a picture
-            boatController.MoveBoat();
-        }
-        else
-        {
-
-        }
+        boatController.MoveBoat();
     }
 
     void FishReset()
