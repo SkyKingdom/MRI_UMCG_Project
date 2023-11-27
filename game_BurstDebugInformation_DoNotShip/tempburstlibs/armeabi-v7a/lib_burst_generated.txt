@@ -49,6 +49,7 @@ Library: D:\Internship 2023-2024\MRI_UMCG_Project\candy_world_VR_Unity\Temp\Burs
 --assembly-defines=Unity.ProBuilder.KdTree;
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=Unity.RenderPipelines.Universal.Shaders;
+--assembly-defines=Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator;
 --assembly-defines=Unity.Multiplayer.Tools.MetricTypes;
 --assembly-defines=Unity.VisualScripting.State;
 --assembly-defines=Cinemachine;
@@ -195,6 +196,7 @@ Library: D:\Internship 2023-2024\MRI_UMCG_Project\candy_world_VR_Unity\Temp\Burs
 --assembly-defines=Unity.ProBuilder.KdTree;
 --assembly-defines=Unity.Mathematics;
 --assembly-defines=Unity.RenderPipelines.Universal.Shaders;
+--assembly-defines=Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator;
 --assembly-defines=Unity.Multiplayer.Tools.MetricTypes;
 --assembly-defines=Unity.VisualScripting.State;
 --assembly-defines=Cinemachine;
