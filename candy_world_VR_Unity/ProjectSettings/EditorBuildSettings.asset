@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/CandyWorld.unity
     guid: 707acc8dffb72b144bb1ffbe1c965f3d
+  - enabled: 1
+    path: Assets/Scene/CrystalWorld.unity
+    guid: 4b2c44d4736719b4f897e9ab02fd256b
   m_configObjects:
     Unity.XR.PXR.Settings: {fileID: 11400000, guid: 1a38a7596b1aaec43b2a233c23ce2c39,
       type: 2}

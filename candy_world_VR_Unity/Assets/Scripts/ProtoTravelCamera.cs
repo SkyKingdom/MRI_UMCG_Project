@@ -108,7 +108,7 @@ public class ProtoTravelCamera : MonoBehaviour
             ChangeScene changeSceneScript = lastHitObject.GetComponent<ChangeScene>();
             if (changeSceneScript != null)
             {
-                changeSceneScript.changeScene();
+                changeSceneScript.TransitionScene();
             }
         }
     }
