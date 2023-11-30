@@ -34,8 +34,8 @@ Library: D:\Internship 2023-2024\MRI_UMCG_Project\candy_world_VR_Unity\Temp\Burs
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
 --assembly-defines=Unity.Burst;
 --assembly-defines=Unity.ProBuilder;
---assembly-defines=Pico.Spatializer.Example;
 --assembly-defines=Unity.VisualScripting.Core;
+--assembly-defines=Pico.Spatializer.Example;
 --assembly-defines=Unity.Multiplayer.Tools.NetworkProfiler.Runtime;
 --assembly-defines=Unity.XR.PICO;
 --assembly-defines=Unity.RenderPipeline.Universal.ShaderLibrary;
@@ -181,8 +181,8 @@ Library: D:\Internship 2023-2024\MRI_UMCG_Project\candy_world_VR_Unity\Temp\Burs
 --assembly-defines=Unity.RenderPipelines.Universal.Runtime;
 --assembly-defines=Unity.Burst;
 --assembly-defines=Unity.ProBuilder;
---assembly-defines=Pico.Spatializer.Example;
 --assembly-defines=Unity.VisualScripting.Core;
+--assembly-defines=Pico.Spatializer.Example;
 --assembly-defines=Unity.Multiplayer.Tools.NetworkProfiler.Runtime;
 --assembly-defines=Unity.XR.PICO;
 --assembly-defines=Unity.RenderPipeline.Universal.ShaderLibrary;
