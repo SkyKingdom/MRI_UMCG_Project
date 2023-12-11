@@ -14,9 +14,24 @@ public class ChangeScene : MonoBehaviour
 
     void Start()
     {
-        // Assuming FadeToBlack has a material with a color property that supports transparency
         fadeMaterial = FadeToBlack.GetComponent<Renderer>().material;
-        fadeMaterial.color = new Color(0, 0, 0, 0); // Set initial alpha to 0
+        fadeMaterial.color = new Color(0, 0, 0, 1); // Set initial alpha to 1 for fade-in effect
+        StartCoroutine(FadeIn());
+    }
+
+    private IEnumerator FadeIn()
+    {
+        float alpha = 1f;
+
+        while (alpha > 0f)
+        {
+            alpha -= Time.deltaTime * fadeSpeed;
+            fadeMaterial.color = new Color(0, 0, 0, alpha);
+            yield return null;
+        }
+
+        // Ensure the alpha is exactly 0
+        fadeMaterial.color = new Color(0, 0, 0, 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,10 +55,8 @@ public class ChangeScene : MonoBehaviour
             yield return null;
         }
 
-        // Ensure the alpha is exactly 1
         fadeMaterial.color = new Color(0, 0, 0, 1);
 
-        // Call the scene transition method after fading out
         TransitionScene();
     }
 

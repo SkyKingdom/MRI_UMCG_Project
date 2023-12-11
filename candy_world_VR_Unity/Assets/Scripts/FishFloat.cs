@@ -99,7 +99,8 @@ public class FishFloat : MonoBehaviour
         OnStopDrifting();
         MoveFishToFloat();
 
-        if (Vector3.Distance(Fish.transform.position, Player.transform.position) < catchDistance)
+        // When the fish is within catchdistance + 0.5 call OnFishCatch(), we add 0.2 so the catch is registered before FishReset() is called
+        if (Vector3.Distance(Fish.transform.position, Player.transform.position) < catchDistance + 0.5)
         {
             OnFishCatch();
         }
@@ -245,9 +246,9 @@ public class FishFloat : MonoBehaviour
 
     void OnFishCatch()
     {
-        FishReset();
-
         boatController.MoveBoat();
+
+        FishReset();
     }
 
     void FishReset()
