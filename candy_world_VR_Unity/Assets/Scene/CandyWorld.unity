@@ -4699,7 +4699,7 @@ PrefabInstance:
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.15
+      value: 5.11
       objectReference: {fileID: 0}
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
@@ -4709,22 +4709,22 @@ PrefabInstance:
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.25882143
       objectReference: {fileID: 0}
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9659252
       objectReference: {fileID: 0}
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
@@ -4734,7 +4734,7 @@ PrefabInstance:
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 35022283048850398, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
@@ -4743,9 +4743,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 807150454123103713, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 807150454123103713, guid: a1de5abed7af363439884aad84172a08,
+        type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 95dc4135578ba464da82ff44469ebeed, type: 3}
+    - target: {fileID: 2592362136531127644, guid: a1de5abed7af363439884aad84172a08,
+        type: 3}
+      propertyPath: m_TagString
+      value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4036864770339954018, guid: a1de5abed7af363439884aad84172a08,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720316230089028197, guid: a1de5abed7af363439884aad84172a08,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5539066641179081151, guid: a1de5abed7af363439884aad84172a08,
         type: 3}
       propertyPath: m_Name
