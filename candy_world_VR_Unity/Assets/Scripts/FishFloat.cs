@@ -9,13 +9,16 @@ public class FishFloat : MonoBehaviour
     // Reference to BoatController script
     [SerializeField] private BoatController boatController;
 
+    // Get the transform of the HMD and controllers so we can track their movement
     [SerializeField] private Transform HMD;
     [SerializeField] private Transform Controller_r;
     [SerializeField] private Transform Controller_l;
 
+    // Reference to the movement scale so we can use the before mentioned players movement to display this visually
     [SerializeField] private GameObject MovementScaleFrame;
     [SerializeField] private Transform MovementScale;
 
+    // No longer used
     [SerializeField] private GameObject FishingScaleFrame;
     [SerializeField] private Transform FishingScale;
 
@@ -47,7 +50,7 @@ public class FishFloat : MonoBehaviour
     private bool hasFishBit;
     private bool isFishCarryingPicture;
 
-    // Yet to be used
+    // Yet to be used (now obsolete)
     private bool isMovementScaleActive;
     private bool isFishingScaleActive;
 
@@ -226,17 +229,17 @@ public class FishFloat : MonoBehaviour
         // Disable Movement scale objects
         MovementScaleFrame.SetActive(false);
 
-        // Enable the FishingScale object
-        FishingScaleFrame.SetActive(true);
+        // Enable the FishingScale object (No longer used)
+        //FishingScaleFrame.SetActive(true);
 
-        // Calculate the new x position based on the sine of Time.time multiplied by fishingScaleSpeed
-        float newX = Mathf.Sin(Time.time * fishingScaleSpeed);
+        // Calculate the new x position based on the sine of Time.time multiplied by fishingScaleSpeed (No longer used)
+        //float newX = Mathf.Sin(Time.time * fishingScaleSpeed);
 
-        // Map the sine value from [-1, 1] to your desired range [-1, 1]
-        newX = Mathf.Lerp(-1f, 1f, (newX + 1f) / 2f);
+        // Map the sine value from [-1, 1] to your desired range [-1, 1] (No longer used)
+        //newX = Mathf.Lerp(-1f, 1f, (newX + 1f) / 2f);
 
-        // Set the new local position of the FishingScale relative to its parent
-        FishingScale.localPosition = new Vector3(newX, FishingScale.localPosition.y, FishingScale.localPosition.z);
+        // Set the new local position of the FishingScale relative to its parent (No longer used)
+        //FishingScale.localPosition = new Vector3(newX, FishingScale.localPosition.y, FishingScale.localPosition.z);
     }
 
     public void OnSwingBackwards()
@@ -246,6 +249,7 @@ public class FishFloat : MonoBehaviour
 
     void OnFishCatch()
     {
+        // Execute the MoveBoat function in Boat > BoatController.cs
         boatController.MoveBoat();
 
         FishReset();
@@ -256,7 +260,8 @@ public class FishFloat : MonoBehaviour
         Fish.transform.parent = null;
         Fish.transform.position = new Vector3(0, 0, 0);
         Fish.SetActive(false);
-        FishingScaleFrame.SetActive(false);
+        // No longer used
+        //FishingScaleFrame.SetActive(false);
         isFishActive = false;
         hasFishBit = false;
         isFishScared = false;

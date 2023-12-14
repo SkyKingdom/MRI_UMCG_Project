@@ -12,6 +12,7 @@ public class BoatController : MonoBehaviour
 
     private void Start()
     {
+        // Reference to the RodLogic.cs which can be found on the fishing rod object
         RodLogic rodlogic = GetComponent<RodLogic>();
     }
 
@@ -37,12 +38,12 @@ public class BoatController : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, targetKeyframe.position, moveSpeed * Time.fixedDeltaTime);
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, targetKeyframe.rotation, moveSpeed * 10.0f * Time.fixedDeltaTime);
                 FishingFloat.SetActive(false);
-                rodLogic.enabled = false;
+                rodLogic.enabled = false; // Disabling RodLogic.cs on the fishing rod object so the player cannot cast the line while moving the boat
 
                 yield return null;
             }
 
-            rodLogic.enabled = true;
+            rodLogic.enabled = true; // Reanabling the script now that the boat has stopped moving
 
             // Update the current keyframe index
             currentKeyframeIndex++;

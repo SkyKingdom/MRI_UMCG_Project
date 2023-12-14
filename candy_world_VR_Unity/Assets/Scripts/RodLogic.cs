@@ -12,9 +12,6 @@ public class RodLogic : MonoBehaviour
     [SerializeField] private float retractSpeed;
     [SerializeField] private float upwardsSpeed;
 
-    // Reference to FishFloat script
-    [SerializeField] private FishFloat fishFloatScript;
-
     private bool isFishFloatActive;
     private bool isSwingingBackwards;
     private Vector3 previousPosition;
@@ -74,7 +71,6 @@ public class RodLogic : MonoBehaviour
             isSwingingBackwards = true;
             StartCoroutine(FloatReturnCoroutine());
             ApplyForceToFishFloat(upwardsSpeed * transform.up, ForceMode.Impulse);
-            fishFloatScript.OnSwingBackwards();
         }
     }
 
